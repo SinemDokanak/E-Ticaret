@@ -1,0 +1,88 @@
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">Neos Ticaret</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Urunler</a>
+          </li>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kategoriler
+              </button>
+              <ul class="dropdown-menu">
+              {% for i in kategori %}
+                 <li><a class="dropdown-item" href="{% url 'index' %}?search={{i.isim}}">{{i.isim}} </a></li>
+                 <!--{% for urun in  i.urun_set.all %}
+                  <li><a class="dropdown-item" href="{% url 'index' %}?search={{i.isim}}">{{i.urun.isim}} </a></li>
+                 {% endfor %}-->
+              {% endfor %}
+              </ul>
+            </div>
+          {% if user.is_authenticated %}
+                <li class="nav-item">
+                <a class="nav-link text-capitalize" href="">{{request.user}}</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'olustur' %}">Olustur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Çıkış</a>
+                </li>
+                <nav class="navbar navbar-expand-lg bg-light">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="{% url 'index' %}">Neos Ticaret</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Urunler</a>
+                          </li>
+                          {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                <a class="nav-link" href="">{{request.user}}</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{% url 'olustur' %}">Olustur</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Çıkış</a>
+                                </li>
+                          {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Giriş</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}">Kayıt</a>
+                                </li>
+                          {% endif %}
+                        </ul>
+                        <form class="d-flex" role="search" method="GET">
+                          <input class="form-control me-2" name="search" value="{{search}}" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </div>
+                    </div>
+                  </nav>
+          {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Giriş</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Kayıt</a>
+                </li>
+          {% endif %}
+        </ul>
+        <form class="d-flex" role="search" method="GET">
+          <input class="form-control me-2" name="search" value="{{search}}" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>

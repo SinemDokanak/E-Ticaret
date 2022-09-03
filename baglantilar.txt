@@ -1,0 +1,3 @@
+Foreignkey = manytoone 
+manytoomany = çoktan çok'a bağlı 
+one to one = teke tek

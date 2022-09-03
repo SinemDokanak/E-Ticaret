@@ -1,0 +1,21 @@
+
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data" class="w-50 m-auto border p-3">
+            {% csrf_token %}
+            <label for="">Resim</label>
+            <input type="file" name="resim" id="" class="form-control">
+            <label for="">Ürün ismi</label>
+            <input type="text" name="isim" class="form-control" id="">
+            <label for="">Ürün açıklaması</label>
+            <textarea name="aciklama" class="form-control" id="" cols="30" rows="5"></textarea>
+            <label for="">Fiyat</label>
+            <input type="number" name="fiyat" id="" class="form-control">
+
+            <input type="submit" value="Oluştur" class="btn btn-primary">
+        </form>
+    </div>
+{% endblock content %}

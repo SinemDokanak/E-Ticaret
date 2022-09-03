@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+
+    <h2>Ürün Sayfası</h2>
+    <div class="container">
+      <div class="row">
+        
+          {% for i in urun %}
+          <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            {% if i.resim %}
+                <img src="{{i.resim.url}}" class="card-img-top" alt="...">
+            {% else %}
+                <img src="{% static 'img/resim2.jpg' %} " width="250" height="200" alt="">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{i.isim}}</h5>
+              <p class="card-text">{{i.aciklama}} - Fiyat = {{i.fiyat}} TL</p>
+              <a href="{% url 'urun' i.id %}" class="btn btn-primary">Ürünü İncele</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+{% endblock content %}
